@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Mirador | Restaurante Panorámico entre Jalisco y Guanajuato</title>
+<meta name="description" content="Vive una experiencia gastronómica inolvidable con la vista panorámica más espectacular entre Jalisco y Guanajuato. Atardeceres, coctelería premium y cocina de autor en San Diego de Alejandría. Reserva tu mesa hoy.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="El Mirador | Donde la mejor vista se encuentra con la mejor mesa">
+<meta property="og:description" content="Restaurante panorámico en el límite de Jalisco y Guanajuato. Atardeceres inolvidables, coctelería premium y gastronomía de altura. 4.4★ con 492 opiniones verificadas.">
+<meta property="og:type" content="restaurant.restaurant">
+<meta property="og:locale" content="es_MX">
+<meta property="og:image" content="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1200&auto=format&fit=crop">
+<meta property="og:site_name" content="El Mirador">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Restaurante El Mirador",
+  "image": "",
+  "servesCuisine": "Mexicana, Mariscos, Coctelería",
+  "priceRange": "$200-$300 MXN",
+  "telephone": "+524761454628",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Km 10 Carretera 304",
+    "addressLocality": "San Diego de Alejandría",
+    "addressRegion": "Jalisco",
+    "postalCode": "47590",
+    "addressCountry": "MX"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.4",
+    "reviewCount": "492"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "24:00"
+  },
+  "acceptsReservations": "True"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root{
+    --forest: #2F4F3E;
+    --forest-deep: #233b2f;
+    --gold: #D6A95C;
+    --gold-light: #e6c587;
+    --terracotta: #B56B45;
+    --deep-blue: #1F3A5F;
+    --cream: #F5F1EA;
+    --cream-dim: #ECE6DA;
+    --black: #181818;
+  }
+
+  html{scroll-behavior:smooth;}
+
+  section[id]{scroll-margin-top: 88px;}
+
+  body{
+    font-family:'Inter', sans-serif;
+    background-color:var(--cream);
+    color:var(--black);
+    overflow-x:hidden;
+  }
+
+  .font-display{font-family:'Cormorant Garamond', serif;}
+  .font-utility{font-family:'Montserrat', sans-serif;}
+
+  /* Horizon divider system — signature element */
+  .horizon{
+    position:relative;
+    width:100%;
+    height:90px;
+    overflow:hidden;
+    line-height:0;
+  }
+  .horizon svg{display:block;width:100%;height:100%;}
+
+  /* Reveal on scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.9s cubic-bezier(.2,.8,.2,1), transform 0.9s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* Custom focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* Gold underline link */
+  .link-underline{
+    position:relative;
+    background-image:linear-gradient(var(--gold),var(--gold));
+    background-position:0 100%;
+    background-repeat:no-repeat;
+    background-size:0% 1px;
+    transition:background-size .4s ease;
+  }
+  .link-underline:hover{background-size:100% 1px;}
+
+  /* Parallax helper */
+  .parallax-bg{
+    background-attachment:fixed;
+    background-position:center;
+    background-size:cover;
+  }
+  @media (max-width: 768px){
+    .parallax-bg{background-attachment:scroll;}
+  }
+
+  /* Star rating */
+  .stars{color:var(--gold);letter-spacing:2px;}
+
+  /* Card hover lift */
+  .lift{transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;}
+  .lift:hover{transform:translateY(-6px);box-shadow:0 20px 40px -15px rgba(24,24,24,0.35);}
+
+  /* Custom scrollbar (webkit) */
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--cream);}
+  ::-webkit-scrollbar-thumb{background:var(--forest);border-radius:6px;}
+
+  /* Eyebrow label */
+  .eyebrow{
+    font-family:'Montserrat',sans-serif;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    font-weight:600;
+  }
+
+  /* Marquee for trust strip */
+  .gold-divider{
+    width:48px;height:2px;background:var(--gold);
+  }
+
+  /* Mobile menu transition */
+  #mobile-menu{transition:max-height .4s ease, opacity .3s ease;}
+
+  /* Sticky CTA pulse on mobile */
+  @keyframes gentlepulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(214,169,92,.45);}
+    50%{box-shadow:0 0 0 10px rgba(214,169,92,0);}
+  }
+  .pulse-cta{animation:gentlepulse 2.8s infinite;}
+  @media (prefers-reduced-motion: reduce){.pulse-cta{animation:none;}}
+
+  /* Image ratio cards */
+  .ratio-portrait{aspect-ratio:3/4;}
+  .ratio-landscape{aspect-ratio:4/3;}
+  .ratio-wide{aspect-ratio:16/9;}
+
+  textarea, input, select{background-color:rgba(255,255,255,0.06);}
+</style>
+</head>
+<body class="bg-[var(--cream)]">
+
+<!-- ================= HEADER ================= -->
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500" style="background:transparent;">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between h-20 lg:h-24">
+    <a href="#inicio" class="font-display text-2xl lg:text-3xl tracking-wide text-[var(--cream)] flex items-center gap-2" id="logo-text">
+      EL MIRADOR
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9 font-utility text-[0.78rem] uppercase tracking-[0.14em] text-[var(--cream)]" id="desktop-nav">
+      <a href="#experiencia" class="link-underline pb-1">Experiencia</a>
+      <a href="#especialidades" class="link-underline pb-1">Menú</a>
+      <a href="#galeria" class="link-underline pb-1">Galería</a>
+      <a href="#opiniones" class="link-underline pb-1">Opiniones</a>
+      <a href="#ubicacion" class="link-underline pb-1">Ubicación</a>
+    </nav>
+
+    <a href="#reservar" class="hidden lg:inline-block font-utility text-[0.75rem] uppercase tracking-[0.14em] font-semibold bg-[var(--gold)] text-[var(--black)] px-6 py-3 rounded-sm hover:bg-[var(--gold-light)] transition-colors">
+      Reservar Mesa
+    </a>
+
+    <button id="menu-toggle" class="lg:hidden text-[var(--cream)] p-2" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="icon-burger" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="hidden"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden overflow-hidden max-h-0 opacity-0 bg-[var(--forest-deep)]">
+    <nav class="flex flex-col px-6 py-2 font-utility text-sm uppercase tracking-[0.12em] text-[var(--cream)]">
+      <a href="#experiencia" class="py-4 border-b border-white/10">Experiencia</a>
+      <a href="#especialidades" class="py-4 border-b border-white/10">Menú</a>
+      <a href="#galeria" class="py-4 border-b border-white/10">Galería</a>
+      <a href="#opiniones" class="py-4 border-b border-white/10">Opiniones</a>
+      <a href="#ubicacion" class="py-4 border-b border-white/10">Ubicación</a>
+      <a href="#reservar" class="my-5 text-center bg-[var(--gold)] text-[var(--black)] font-semibold py-3.5 rounded-sm">Reservar Mesa</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="inicio" class="relative min-h-[100svh] flex items-end overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0 -z-20">
+    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1920&auto=format&fit=crop"
+         alt="Vista panorámica de valle y montañas al atardecer desde una terraza"
+         class="w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(24,24,24,0.55) 0%, rgba(31,58,95,0.25) 35%, rgba(24,24,24,0.15) 55%, rgba(24,24,24,0.92) 100%);"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pb-16 lg:pb-24 pt-40 w-full">
+    <p class="eyebrow text-[var(--gold)] mb-5 reveal">San Diego de Alejandría · Límite Jalisco–Guanajuato</p>
+
+    <h1 class="font-display text-[var(--cream)] text-[2.6rem] leading-[1.08] sm:text-6xl lg:text-7xl lg:leading-[1.05] max-w-4xl reveal" style="transition-delay:.1s;">
+      Donde la mejor vista se encuentra con una experiencia gastronómica inolvidable
+    </h1>
+
+    <p class="text-[var(--cream)]/85 text-base sm:text-lg lg:text-xl max-w-xl mt-6 font-light reveal" style="transition-delay:.2s;">
+      Disfruta sabores extraordinarios mientras contemplas una de las panorámicas más impresionantes entre Jalisco y Guanajuato.
+    </p>
+
+    <!-- Trust strip -->
+    <div class="flex flex-wrap items-center gap-x-8 gap-y-3 mt-8 reveal" style="transition-delay:.3s;">
+      <div class="flex items-center gap-2">
+        <span class="stars text-lg leading-none">★★★★★</span>
+        <span class="font-utility text-[var(--cream)] text-sm">4.4 · 492 opiniones</span>
+      </div>
+      <div class="hidden sm:block w-px h-5 bg-white/25"></div>
+      <div class="flex items-center gap-5 font-utility text-[var(--cream)]/85 text-xs uppercase tracking-wider">
+        <span>🌄 Vista Panorámica</span>
+        <span>🍸 Coctelería Premium</span>
+        <span>🍽️ Experiencia Completa</span>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="flex flex-wrap gap-4 mt-10 reveal" style="transition-delay:.4s;">
+      <a href="#reservar" class="font-utility text-sm uppercase tracking-[0.14em] font-semibold bg-[var(--gold)] text-[var(--black)] px-8 py-4 rounded-sm hover:bg-[var(--gold-light)] transition-colors pulse-cta">
+        Reservar Mesa
+      </a>
+      <a href="#ubicacion" class="font-utility text-sm uppercase tracking-[0.14em] font-semibold border border-[var(--cream)]/50 text-[var(--cream)] px-8 py-4 rounded-sm hover:bg-white/10 transition-colors">
+        Cómo Llegar
+      </a>
+      <a href="#especialidades" class="font-utility text-sm uppercase tracking-[0.14em] font-semibold text-[var(--cream)] px-2 py-4 link-underline">
+        Ver Menú
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-[var(--cream)]/70">
+    <span class="font-utility text-[0.65rem] uppercase tracking-[0.2em]">Descubre</span>
+    <span class="w-px h-8 bg-[var(--cream)]/50 animate-bounce"></span>
+  </div>
+</section>
+
+<!-- ================= HORIZON DIVIDER (signature element) ================= -->
+<div class="horizon" style="background:var(--black);" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="skyfade1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#1F3A5F"/>
+        <stop offset="55%" stop-color="#B56B45"/>
+        <stop offset="100%" stop-color="#D6A95C"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="1440" height="90" fill="#181818"/>
+    <circle cx="1180" cy="46" r="30" fill="url(#skyfade1)" opacity="0.9"/>
+    <path d="M0,90 L0,55 C120,30 240,62 360,40 C480,18 560,58 680,48 C800,38 860,15 980,42 C1100,68 1220,30 1320,50 C1380,62 1410,55 1440,60 L1440,90 Z" fill="#2F4F3E"/>
+    <path d="M0,90 L0,72 C140,58 260,80 400,68 C540,56 640,78 760,70 C900,62 1000,82 1140,72 C1260,64 1360,80 1440,74 L1440,90 Z" fill="#233b2f"/>
+  </svg>
+</div>
+
+<!-- ================= EXPERIENCIA EL MIRADOR ================= -->
+<section id="experiencia" class="bg-[var(--black)] text-[var(--cream)] py-24 lg:py-36">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+      <div class="lg:col-span-5 reveal">
+        <p class="eyebrow text-[var(--gold)] mb-4">La Experiencia</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-[1.1] mb-7">
+          Una invitación a desconectarte de la rutina
+        </h2>
+        <p class="text-[var(--cream)]/80 leading-relaxed text-base sm:text-lg font-light">
+          Cada visita a El Mirador es una invitación a dejar atrás el ritmo cotidiano y disfrutar momentos especiales rodeado de paisajes espectaculares, gastronomía de calidad y un ambiente diseñado, a propósito, para crear recuerdos.
+        </p>
+
+        <div class="grid grid-cols-2 gap-6 mt-10">
+          <div>
+            <p class="font-display text-2xl text-[var(--gold)] mb-1">Ubicación</p>
+            <p class="text-sm text-[var(--cream)]/70 font-light">Privilegiada, en el límite exacto entre dos estados</p>
+          </div>
+          <div>
+            <p class="font-display text-2xl text-[var(--gold)] mb-1">Vista</p>
+            <p class="text-sm text-[var(--cream)]/70 font-light">Incomparable, sobre valles de Jalisco y Guanajuato</p>
+          </div>
+          <div>
+            <p class="font-display text-2xl text-[var(--gold)] mb-1">Atención</p>
+            <p class="text-sm text-[var(--cream)]/70 font-light">Personalizada, pensada para cada celebración</p>
+          </div>
+          <div>
+            <p class="font-display text-2xl text-[var(--gold)] mb-1">Ambiente</p>
+            <p class="text-sm text-[var(--cream)]/70 font-light">Único, con música en vivo y atardeceres de fondo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 reveal" style="transition-delay:.15s;">
+        <div class="grid grid-cols-2 gap-4 lg:gap-5">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=900&auto=format&fit=crop" alt="Pareja disfrutando una cena romántica con vista al atardecer" class="ratio-portrait w-full object-cover rounded-sm">
+          <div class="flex flex-col gap-4 lg:gap-5">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=900&auto=format&fit=crop" alt="Mesa servida con vista panorámica al valle" class="ratio-landscape w-full object-cover rounded-sm">
+            <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=900&auto=format&fit=crop" alt="Cóctel artesanal servido al atardecer" class="ratio-landscape w-full object-cover rounded-sm">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= LA VISTA QUE TODOS RECOMIENDAN ================= -->
+<section class="relative py-32 lg:py-44 parallax-bg" style="background-image:linear-gradient(180deg, rgba(31,58,95,0.45), rgba(24,24,24,0.78)), url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1920&auto=format&fit=crop');">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center text-[var(--cream)]">
+    <p class="eyebrow text-[var(--gold)] mb-5 reveal">Un Mismo Lugar, Dos Estados</p>
+    <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] reveal" style="transition-delay:.1s;">
+      La mejor vista de la región
+    </h2>
+    <p class="text-[var(--cream)]/85 text-base sm:text-lg max-w-2xl mx-auto mt-6 font-light leading-relaxed reveal" style="transition-delay:.2s;">
+      Desde nuestra terraza, los paisajes de Jalisco y Guanajuato se funden en un mismo horizonte. Un punto exacto donde la geografía se convierte en espectáculo.
+    </p>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mt-14 reveal" style="transition-delay:.3s;">
+      <div>
+        <p class="text-3xl mb-2">📸</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--cream)]/90">Lugar favorito para fotografías</p>
+      </div>
+      <div>
+        <p class="text-3xl mb-2">🌅</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--cream)]/90">Atardeceres memorables</p>
+      </div>
+      <div>
+        <p class="text-3xl mb-2">❤️</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--cream)]/90">Ideal para parejas</p>
+      </div>
+      <div>
+        <p class="text-3xl mb-2">🎉</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--cream)]/90">Perfecto para celebraciones</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ESPECIALIDADES DE LA CASA ================= -->
+<section id="especialidades" class="bg-[var(--cream)] py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="max-w-2xl mb-14 lg:mb-20 reveal">
+      <p class="eyebrow text-[var(--terracotta)] mb-4">Sabores de El Mirador</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-[1.1] text-[var(--black)]">
+        Especialidades de la Casa
+      </h2>
+      <p class="text-[var(--black)]/70 mt-5 font-light text-base sm:text-lg">
+        Platillos abundantes y bebidas pensadas para acompañar cada atardecer, una mesa a la vez.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-8">
+
+      <!-- Card 1 -->
+      <article class="lift bg-white rounded-sm overflow-hidden shadow-[0_4px_24px_-8px_rgba(24,24,24,0.12)] reveal">
+        <div class="relative ratio-landscape overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?q=80&w=900&auto=format&fit=crop" alt="Molcajete Mar y Tierra servido con mariscos y carne" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 font-utility text-[0.65rem] uppercase tracking-wider font-semibold bg-[var(--gold)] text-[var(--black)] px-3 py-1.5 rounded-sm">Favorito de Clientes</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl text-[var(--black)] mb-2">Molcajete Mar y Tierra</h3>
+          <p class="text-sm text-[var(--black)]/65 font-light leading-relaxed">Una de las especialidades más representativas de la casa, servida al estilo tradicional.</p>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="lift bg-white rounded-sm overflow-hidden shadow-[0_4px_24px_-8px_rgba(24,24,24,0.12)] reveal" style="transition-delay:.08s;">
+        <div class="relative ratio-landscape overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=900&auto=format&fit=crop" alt="Empanadas de carne molida y cecina recién horneadas" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 font-utility text-[0.65rem] uppercase tracking-wider font-semibold bg-[var(--terracotta)] text-white px-3 py-1.5 rounded-sm">Especialidad de la Casa</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl text-[var(--black)] mb-2">Empanadas de Carne Molida y Cecina</h3>
+          <p class="text-sm text-[var(--black)]/65 font-light leading-relaxed">Tradición y sabor en cada bocado, preparadas con receta de la casa.</p>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="lift bg-white rounded-sm overflow-hidden shadow-[0_4px_24px_-8px_rgba(24,24,24,0.12)] reveal" style="transition-delay:.16s;">
+        <div class="relative ratio-landscape overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=900&auto=format&fit=crop" alt="Coctelería premium servida en barra con vista al atardecer" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 font-utility text-[0.65rem] uppercase tracking-wider font-semibold bg-[var(--deep-blue)] text-white px-3 py-1.5 rounded-sm">Experiencia Completa</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl text-[var(--black)] mb-2">Coctelería Premium</h3>
+          <p class="text-sm text-[var(--black)]/65 font-light leading-relaxed">Bebidas de autor, preparadas para acompañar la experiencia y el paisaje.</p>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="lift bg-white rounded-sm overflow-hidden shadow-[0_4px_24px_-8px_rgba(24,24,24,0.12)] reveal" style="transition-delay:.24s;">
+        <div class="relative ratio-landscape overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1556679343-c1306ee345c0?q=80&w=900&auto=format&fit=crop" alt="Margarita especial servida en vaso escarchado" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 font-utility text-[0.65rem] uppercase tracking-wider font-semibold bg-[var(--gold)] text-[var(--black)] px-3 py-1.5 rounded-sm">Más Pedidas</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl text-[var(--black)] mb-2">Margaritas Especiales</h3>
+          <p class="text-sm text-[var(--black)]/65 font-light leading-relaxed">Perfectas para disfrutar la vista con el toque justo de tequila y cítricos.</p>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="lift bg-white rounded-sm overflow-hidden shadow-[0_4px_24px_-8px_rgba(24,24,24,0.12)] reveal" style="transition-delay:.32s;">
+        <div class="relative ratio-landscape overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1597266094244-ec3b00f7c8de?q=80&w=900&auto=format&fit=crop" alt="Sangría artesanal servida en jarra de cristal" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 font-utility text-[0.65rem] uppercase tracking-wider font-semibold bg-[var(--terracotta)] text-white px-3 py-1.5 rounded-sm">Recomendación del Chef</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl text-[var(--black)] mb-2">Sangrías Artesanales</h3>
+          <p class="text-sm text-[var(--black)]/65 font-light leading-relaxed">Refrescantes y elegantes, con fruta de temporada y vino seleccionado.</p>
+        </div>
+      </article>
+
+      <!-- Card 6 — CTA card -->
+      <article class="lift relative rounded-sm overflow-hidden flex flex-col items-start justify-center p-8 reveal" style="transition-delay:.4s; background:var(--forest);">
+        <p class="eyebrow text-[var(--gold)] mb-3">Carta Completa</p>
+        <h3 class="font-display text-2xl sm:text-3xl text-[var(--cream)] mb-4 leading-tight">Descubre todos los sabores de El Mirador</h3>
+        <p class="text-sm text-[var(--cream)]/70 font-light leading-relaxed mb-6">Platillos abundantes, mariscos, carnes y coctelería pensada para cada ocasión.</p>
+        <a href="#reservar" class="font-utility text-xs uppercase tracking-[0.14em] font-semibold border border-[var(--gold)] text-[var(--gold)] px-6 py-3 rounded-sm hover:bg-[var(--gold)] hover:text-[var(--black)] transition-colors">Reservar Mesa</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALERÍA PREMIUM ================= -->
+<section id="galeria" class="bg-[var(--black)] py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12 lg:mb-16 reveal">
+      <div>
+        <p class="eyebrow text-[var(--gold)] mb-4">Galería</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-[1.1] text-[var(--cream)]">
+          Momentos que se quedan
+        </h2>
+      </div>
+      <div class="flex flex-wrap gap-2.5" id="gallery-filters">
+        <button data-filter="all" class="gallery-btn font-utility text-[0.68rem] uppercase tracking-wider px-4 py-2 rounded-full border border-[var(--gold)] bg-[var(--gold)] text-[var(--black)]">Todo</button>
+        <button data-filter="vista" class="gallery-btn font-utility text-[0.68rem] uppercase tracking-wider px-4 py-2 rounded-full border border-[var(--cream)]/30 text-[var(--cream)]/80">Vista Panorámica</button>
+        <button data-filter="atardecer" class="gallery-btn font-utility text-[0.68rem] uppercase tracking-wider px-4 py-2 rounded-full border border-[var(--cream)]/30 text-[var(--cream)]/80">Atardeceres</button>
+        <button data-filter="platillos" class="gallery-btn font-utility text-[0.68rem] uppercase tracking-wider px-4 py-2 rounded-full border border-[var(--cream)]/30 text-[var(--cream)]/80">Platillos</button>
+        <button data-filter="coctel" class="gallery-btn font-utility text-[0.68rem] uppercase tracking-wider px-4 py-2 rounded-full border border-[var(--cream)]/30 text-[var(--cream)]/80">Coctelería</button>
+        <button data-filter="ambiente" class="gallery-btn font-utility text-[0.68rem] uppercase tracking-wider px-4 py-2 rounded-full border border-[var(--cream)]/30 text-[var(--cream)]/80">Ambiente</button>
+        <button data-filter="noche" class="gallery-btn font-utility text-[0.68rem] uppercase tracking-wider px-4 py-2 rounded-full border border-[var(--cream)]/30 text-[var(--cream)]/80">Noche</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4" id="gallery-grid">
+
+      <div class="gallery-item row-span-2 ratio-portrait sm:aspect-auto sm:h-full overflow-hidden rounded-sm" data-cat="vista">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop" alt="Vista panorámica de cordillera entre Jalisco y Guanajuato" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+      <div class="gallery-item ratio-landscape overflow-hidden rounded-sm" data-cat="atardecer">
+        <img src="https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=900&auto=format&fit=crop" alt="Atardecer naranja sobre el valle" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+      <div class="gallery-item ratio-landscape overflow-hidden rounded-sm" data-cat="platillos">
+        <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?q=80&w=900&auto=format&fit=crop" alt="Platillo de mariscos servido elegantemente" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+      <div class="gallery-item ratio-portrait overflow-hidden rounded-sm" data-cat="coctel">
+        <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=900&auto=format&fit=crop" alt="Coctel artesanal con guarnición de cítricos" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+
+      <div class="gallery-item ratio-landscape overflow-hidden rounded-sm" data-cat="ambiente">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=900&auto=format&fit=crop" alt="Terraza con mesas decoradas al atardecer" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+      <div class="gallery-item row-span-2 ratio-portrait sm:aspect-auto sm:h-full overflow-hidden rounded-sm" data-cat="vista">
+        <img src="https://images.unsplash.com/photo-1546484959-f9a53db89f4c?q=80&w=900&auto=format&fit=crop" alt="Valle montañoso visto desde altura" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+      <div class="gallery-item ratio-landscape overflow-hidden rounded-sm" data-cat="noche">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=900&auto=format&fit=crop" alt="Ambiente nocturno con iluminación cálida" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+      <div class="gallery-item ratio-landscape overflow-hidden rounded-sm" data-cat="platillos">
+        <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?q=80&w=900&auto=format&fit=crop" alt="Plato gourmet servido con presentación elegante" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+
+      <div class="gallery-item ratio-landscape overflow-hidden rounded-sm" data-cat="atardecer">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=900&auto=format&fit=crop" alt="Cielo con tonos dorados al atardecer" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+      <div class="gallery-item ratio-portrait overflow-hidden rounded-sm" data-cat="coctel">
+        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=900&auto=format&fit=crop" alt="Barra de coctelería con vista panorámica" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+      <div class="gallery-item ratio-landscape overflow-hidden rounded-sm" data-cat="ambiente">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=900&auto=format&fit=crop" alt="Familia disfrutando una celebración en terraza" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+      <div class="gallery-item ratio-landscape overflow-hidden rounded-sm" data-cat="noche">
+        <img src="https://images.unsplash.com/photo-1551218372-a8789b81b253?q=80&w=900&auto=format&fit=crop" alt="Luces cálidas iluminando la terraza por la noche" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Horizon divider 2 -->
+<div class="horizon" style="background:var(--black);" aria-hidden="true">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+    <rect x="0" y="0" width="1440" height="90" fill="#181818"/>
+    <path d="M0,90 L0,55 C120,30 240,62 360,40 C480,18 560,58 680,48 C800,38 860,15 980,42 C1100,68 1220,30 1320,50 C1380,62 1410,55 1440,60 L1440,90 Z" fill="#F5F1EA"/>
+  </svg>
+</div>
+
+<!-- ================= EXPERIENCIA GASTRONÓMICA (ICONOS) ================= -->
+<section class="bg-[var(--cream)] py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="text-center max-w-2xl mx-auto mb-14 lg:mb-20 reveal">
+      <p class="eyebrow text-[var(--terracotta)] mb-4">Por Qué Visitarnos</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-[1.1] text-[var(--black)]">
+        Una experiencia completa, en cada sentido
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-12 lg:gap-y-14">
+      <div class="text-center reveal">
+        <p class="text-4xl mb-4">🌄</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/80">Vista Inigualable</p>
+      </div>
+      <div class="text-center reveal" style="transition-delay:.05s;">
+        <p class="text-4xl mb-4">🍽️</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/80">Cocina de Calidad</p>
+      </div>
+      <div class="text-center reveal" style="transition-delay:.1s;">
+        <p class="text-4xl mb-4">🍹</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/80">Coctelería Especial</p>
+      </div>
+      <div class="text-center reveal" style="transition-delay:.15s;">
+        <p class="text-4xl mb-4">🎶</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/80">Ambiente Relajado</p>
+      </div>
+      <div class="text-center reveal" style="transition-delay:.2s;">
+        <p class="text-4xl mb-4">❤️</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/80">Ideal para Parejas</p>
+      </div>
+      <div class="text-center reveal" style="transition-delay:.25s;">
+        <p class="text-4xl mb-4">👨‍👩‍👧‍👦</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/80">Perfecto para Familias</p>
+      </div>
+      <div class="text-center reveal" style="transition-delay:.3s;">
+        <p class="text-4xl mb-4">📸</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/80">Lugar Instagrameable</p>
+      </div>
+      <div class="text-center reveal" style="transition-delay:.35s;">
+        <p class="text-4xl mb-4">⭐</p>
+        <p class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/80">Servicio Destacado</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPINIONES Y CALIFICACIONES ================= -->
+<section id="opiniones" class="bg-[var(--forest)] py-24 lg:py-32 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+      <p class="eyebrow text-[var(--gold)] mb-4">Lo Que Dicen Nuestros Visitantes</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-[1.1] text-[var(--cream)] mb-6">
+        Opiniones y Calificaciones
+      </h2>
+      <div class="flex flex-col items-center gap-2">
+        <span class="stars text-2xl">★★★★★</span>
+        <p class="font-utility text-sm text-[var(--cream)]/85">4.4 de calificación · 492 opiniones verificadas</p>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+
+      <figure class="bg-[var(--cream)]/[0.06] border border-[var(--cream)]/10 rounded-sm p-6 reveal">
+        <span class="stars text-sm">★★★★★</span>
+        <blockquote class="font-display text-lg text-[var(--cream)] mt-4 leading-snug italic">
+          "La atención es excelente y lo mejor de todo es la vista."
+        </blockquote>
+        <figcaption class="font-utility text-xs uppercase tracking-wider text-[var(--gold)] mt-5">Ronaldo Pérez</figcaption>
+      </figure>
+
+      <figure class="bg-[var(--cream)]/[0.06] border border-[var(--cream)]/10 rounded-sm p-6 reveal" style="transition-delay:.08s;">
+        <span class="stars text-sm">★★★★★</span>
+        <blockquote class="font-display text-lg text-[var(--cream)] mt-4 leading-snug italic">
+          "Un lugar espectacular. La vista es preciosa y la comida tiene muy buen sabor."
+        </blockquote>
+        <figcaption class="font-utility text-xs uppercase tracking-wider text-[var(--gold)] mt-5">Méndez Mariana</figcaption>
+      </figure>
+
+      <figure class="bg-[var(--cream)]/[0.06] border border-[var(--cream)]/10 rounded-sm p-6 reveal" style="transition-delay:.16s;">
+        <span class="stars text-sm">★★★★★</span>
+        <blockquote class="font-display text-lg text-[var(--cream)] mt-4 leading-snug italic">
+          "La vista entre Guanajuato y Jalisco es increíble. Excelente ambiente y servicio."
+        </blockquote>
+        <figcaption class="font-utility text-xs uppercase tracking-wider text-[var(--gold)] mt-5">Esmeralda</figcaption>
+      </figure>
+
+      <figure class="bg-[var(--cream)]/[0.06] border border-[var(--cream)]/10 rounded-sm p-6 reveal" style="transition-delay:.24s;">
+        <span class="stars text-sm">★★★★★</span>
+        <blockquote class="font-display text-lg text-[var(--cream)] mt-4 leading-snug italic">
+          "La vista es inigualable, el servicio rápido y amable, y los platillos son deliciosos."
+        </blockquote>
+        <figcaption class="font-utility text-xs uppercase tracking-wider text-[var(--gold)] mt-5">Opinión Destacada</figcaption>
+      </figure>
+
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center border-t border-[var(--cream)]/15 pt-12">
+      <div class="reveal">
+        <p class="font-display text-4xl text-[var(--gold)] mb-1">98%</p>
+        <p class="font-utility text-[0.68rem] uppercase tracking-wider text-[var(--cream)]/75">Satisfacción</p>
+      </div>
+      <div class="reveal" style="transition-delay:.06s;">
+        <p class="font-display text-4xl text-[var(--gold)] mb-1">492</p>
+        <p class="font-utility text-[0.68rem] uppercase tracking-wider text-[var(--cream)]/75">Opiniones verificadas</p>
+      </div>
+      <div class="reveal" style="transition-delay:.12s;">
+        <p class="font-display text-4xl text-[var(--gold)] mb-1">★</p>
+        <p class="font-utility text-[0.68rem] uppercase tracking-wider text-[var(--cream)]/75">Destino recomendado</p>
+      </div>
+      <div class="reveal" style="transition-delay:.18s;">
+        <p class="font-display text-4xl text-[var(--gold)] mb-1">❤</p>
+        <p class="font-utility text-[0.68rem] uppercase tracking-wider text-[var(--cream)]/75">Experiencia memorable</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESERVACIONES ================= -->
+<section id="reservar" class="relative bg-[var(--cream)] py-24 lg:py-32 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <div class="reveal order-2 lg:order-1">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1100&auto=format&fit=crop" alt="Mesa reservada con vista al atardecer lista para celebración" class="w-full ratio-portrait sm:aspect-auto sm:h-[560px] object-cover rounded-sm">
+          <div class="absolute -bottom-6 -left-6 hidden sm:block bg-[var(--forest)] text-[var(--cream)] px-7 py-5 rounded-sm shadow-xl">
+            <p class="font-display text-3xl text-[var(--gold)]">4.4 ★</p>
+            <p class="font-utility text-[0.65rem] uppercase tracking-wider mt-1">492 opiniones</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-1 lg:order-2 reveal" style="transition-delay:.1s;">
+        <p class="eyebrow text-[var(--terracotta)] mb-4">Reservaciones</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-[1.1] text-[var(--black)] mb-5">
+          Reserva la mejor vista para tu próxima experiencia
+        </h2>
+        <p class="text-[var(--black)]/65 font-light mb-9">
+          Cumpleaños, aniversarios o una tarde sin motivo más que el atardecer: cuéntanos la ocasión y preparamos tu mesa.
+        </p>
+
+        <form class="space-y-5" id="reservation-form">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="r-nombre" class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/70 block mb-2">Nombre</label>
+              <input id="r-nombre" name="nombre" type="text" required placeholder="Tu nombre completo" class="w-full border border-[var(--black)]/15 bg-white rounded-sm px-4 py-3.5 text-sm focus:border-[var(--gold)] outline-none transition-colors">
+            </div>
+            <div>
+              <label for="r-telefono" class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/70 block mb-2">Teléfono</label>
+              <input id="r-telefono" name="telefono" type="tel" required placeholder="10 dígitos" class="w-full border border-[var(--black)]/15 bg-white rounded-sm px-4 py-3.5 text-sm focus:border-[var(--gold)] outline-none transition-colors">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-5">
+            <div>
+              <label for="r-fecha" class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/70 block mb-2">Fecha</label>
+              <input id="r-fecha" name="fecha" type="date" required class="w-full border border-[var(--black)]/15 bg-white rounded-sm px-4 py-3.5 text-sm focus:border-[var(--gold)] outline-none transition-colors">
+            </div>
+            <div>
+              <label for="r-hora" class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/70 block mb-2">Hora</label>
+              <input id="r-hora" name="hora" type="time" required class="w-full border border-[var(--black)]/15 bg-white rounded-sm px-4 py-3.5 text-sm focus:border-[var(--gold)] outline-none transition-colors">
+            </div>
+            <div>
+              <label for="r-personas" class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/70 block mb-2">Personas</label>
+              <select id="r-personas" name="personas" required class="w-full border border-[var(--black)]/15 bg-white rounded-sm px-4 py-3.5 text-sm focus:border-[var(--gold)] outline-none transition-colors">
+                <option value="">Elegir</option>
+                <option>1-2</option>
+                <option>3-4</option>
+                <option>5-6</option>
+                <option>7+</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="r-comentarios" class="font-utility text-xs uppercase tracking-wider text-[var(--black)]/70 block mb-2">Comentarios</label>
+            <textarea id="r-comentarios" name="comentarios" rows="3" placeholder="¿Alguna celebración especial? Cuéntanos." class="w-full border border-[var(--black)]/15 bg-white rounded-sm px-4 py-3.5 text-sm focus:border-[var(--gold)] outline-none transition-colors resize-none"></textarea>
+          </div>
+
+          <button type="submit" class="w-full sm:w-auto font-utility text-sm uppercase tracking-[0.14em] font-semibold bg-[var(--gold)] text-[var(--black)] px-9 py-4 rounded-sm hover:bg-[var(--gold-light)] transition-colors">
+            Reservar Mesa
+          </button>
+          <p id="form-confirm" class="hidden font-utility text-xs text-[var(--forest)] mt-3">Gracias — tu solicitud fue registrada. Te confirmaremos por teléfono.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= UBICACIÓN ================= -->
+<section id="ubicacion" class="bg-[var(--black)] py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+
+      <div class="reveal">
+        <p class="eyebrow text-[var(--gold)] mb-4">Ubicación</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-[1.1] text-[var(--cream)] mb-7">
+          En el límite exacto entre dos estados
+        </h2>
+        <address class="not-italic text-[var(--cream)]/80 font-light leading-relaxed text-base sm:text-lg mb-9">
+          Km 10 Carretera 304<br>
+          Límite entre Guanajuato y Jalisco<br>
+          47590 San Diego de Alejandría, Jalisco, México
+        </address>
+
+        <div class="flex flex-wrap gap-4 mb-10">
+          <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+El+Mirador+San+Diego+de+Alejandr%C3%ADa+Jalisco" target="_blank" rel="noopener" class="font-utility text-sm uppercase tracking-[0.14em] font-semibold bg-[var(--gold)] text-[var(--black)] px-7 py-4 rounded-sm hover:bg-[var(--gold-light)] transition-colors">
+            Cómo Llegar
+          </a>
+          <a href="tel:+524761454628" class="font-utility text-sm uppercase tracking-[0.14em] font-semibold border border-[var(--cream)]/40 text-[var(--cream)] px-7 py-4 rounded-sm hover:bg-white/10 transition-colors">
+            Llamar Ahora
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 border-t border-[var(--cream)]/15 pt-8">
+          <div>
+            <p class="font-utility text-xs uppercase tracking-wider text-[var(--gold)] mb-1">Horario</p>
+            <p class="text-sm text-[var(--cream)]/75 font-light">Abierto diariamente<br>Cierra a las 12:00 AM</p>
+          </div>
+          <div>
+            <p class="font-utility text-xs uppercase tracking-wider text-[var(--gold)] mb-1">Servicios</p>
+            <p class="text-sm text-[var(--cream)]/75 font-light">Consumo en el lugar<br>Para llevar</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal min-h-[360px] lg:min-h-0" style="transition-delay:.1s;">
+        <iframe
+          title="Mapa de ubicación de Restaurante El Mirador"
+          class="w-full h-full min-h-[360px] rounded-sm border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Restaurante+El+Mirador+San+Diego+de+Alejandr%C3%ADa+Jalisco&output=embed">
+        </iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section class="bg-[var(--forest-deep)] py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid sm:grid-cols-3 gap-10 text-center sm:text-left">
+      <div class="reveal">
+        <p class="eyebrow text-[var(--gold)] mb-3">Teléfono</p>
+        <a href="tel:+524761454628" class="font-display text-2xl text-[var(--cream)] link-underline">476 145 4628</a>
+      </div>
+      <div class="reveal" style="transition-delay:.08s;">
+        <p class="eyebrow text-[var(--gold)] mb-3">Precio Promedio</p>
+        <p class="font-display text-2xl text-[var(--cream)]">$200–$300 MXN</p>
+      </div>
+      <div class="reveal" style="transition-delay:.16s;">
+        <p class="eyebrow text-[var(--gold)] mb-3">Horario</p>
+        <p class="font-display text-2xl text-[var(--cream)]">Hasta las 12:00 AM</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="relative py-32 lg:py-44 parallax-bg" style="background-image:linear-gradient(180deg, rgba(24,24,24,0.55), rgba(31,58,95,0.55), rgba(24,24,24,0.92)), url('https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1920&auto=format&fit=crop');">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center text-[var(--cream)]">
+    <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] reveal">
+      Más que una comida, una experiencia que recordarás
+    </h2>
+    <p class="text-[var(--cream)]/85 text-base sm:text-lg max-w-xl mx-auto mt-6 font-light reveal" style="transition-delay:.1s;">
+      Descubre por qué cientos de visitantes consideran a El Mirador uno de los lugares más especiales de la región.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 mt-10 reveal" style="transition-delay:.2s;">
+      <a href="#reservar" class="font-utility text-sm uppercase tracking-[0.14em] font-semibold bg-[var(--gold)] text-[var(--black)] px-8 py-4 rounded-sm hover:bg-[var(--gold-light)] transition-colors">
+        Reservar Mesa
+      </a>
+      <a href="#especialidades" class="font-utility text-sm uppercase tracking-[0.14em] font-semibold border border-[var(--cream)]/50 text-[var(--cream)] px-8 py-4 rounded-sm hover:bg-white/10 transition-colors">
+        Ver Menú
+      </a>
+      <a href="#ubicacion" class="font-utility text-sm uppercase tracking-[0.14em] font-semibold text-[var(--cream)] px-2 py-4 link-underline">
+        Cómo Llegar
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-[var(--black)] text-[var(--cream)]/70 py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-6 border-b border-white/10 pb-8 mb-8">
+      <p class="font-display text-2xl text-[var(--cream)]">EL MIRADOR</p>
+      <nav class="flex flex-wrap gap-x-7 gap-y-2 font-utility text-xs uppercase tracking-wider justify-center">
+        <a href="#experiencia" class="link-underline">Experiencia</a>
+        <a href="#especialidades" class="link-underline">Menú</a>
+        <a href="#galeria" class="link-underline">Galería</a>
+        <a href="#opiniones" class="link-underline">Opiniones</a>
+        <a href="#ubicacion" class="link-underline">Ubicación</a>
+      </nav>
+    </div>
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 font-utility text-[0.7rem] uppercase tracking-wider">
+      <p>Km 10 Carretera 304, Límite Jalisco–Guanajuato, San Diego de Alejandría</p>
+      <p>© 2026 El Mirador. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header style on scroll
+  const header = document.getElementById('site-header');
+  const logoText = document.getElementById('logo-text');
+  const nav = document.getElementById('desktop-nav');
+  function onScrollHeader(){
+    if(window.scrollY > 60){
+      header.style.background = 'rgba(24,24,24,0.92)';
+      header.style.boxShadow = '0 4px 24px -8px rgba(0,0,0,0.3)';
+    } else {
+      header.style.background = 'transparent';
+      header.style.boxShadow = 'none';
+    }
+  }
+  window.addEventListener('scroll', onScrollHeader, {passive:true});
+  onScrollHeader();
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconBurger = document.getElementById('icon-burger');
+  const iconClose = document.getElementById('icon-close');
+  let menuOpen = false;
+  menuToggle.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    menuToggle.setAttribute('aria-expanded', String(menuOpen));
+    if(menuOpen){
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+      mobileMenu.style.opacity = '1';
+      iconBurger.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+    } else {
+      mobileMenu.style.maxHeight = '0px';
+      mobileMenu.style.opacity = '0';
+      iconBurger.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menuOpen = false;
+    mobileMenu.style.maxHeight = '0px';
+    mobileMenu.style.opacity = '0';
+    iconBurger.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    menuToggle.setAttribute('aria-expanded','false');
+  }));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+  revealEls.forEach(el => io.observe(el));
+
+  // Gallery filter
+  const filterBtns = document.querySelectorAll('.gallery-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-[var(--gold)]','text-[var(--black)]','border-[var(--gold)]');
+        b.classList.add('border-[var(--cream)]/30','text-[var(--cream)]/80');
+      });
+      btn.classList.add('bg-[var(--gold)]','text-[var(--black)]','border-[var(--gold)]');
+      btn.classList.remove('border-[var(--cream)]/30','text-[var(--cream)]/80');
+
+      const filter = btn.dataset.filter;
+      galleryItems.forEach(item => {
+        if(filter === 'all' || item.dataset.cat === filter){
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Reservation form (no backend — confirms locally)
+  const form = document.getElementById('reservation-form');
+  const confirmMsg = document.getElementById('form-confirm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    confirmMsg.classList.remove('hidden');
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
